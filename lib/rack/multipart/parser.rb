@@ -71,7 +71,7 @@ module Rack
       def fast_forward_to_first_boundary
         loop do
           content = @io.read(BUFSIZE)
-          @buf << content
+          @buf << content if content
 
           while @buf.gsub!(/\A([^\n]*\n)/, '')
             read_buffer = $1
